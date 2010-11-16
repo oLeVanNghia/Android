@@ -1,0 +1,119 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  Internal Error (classFileParser.cpp:3161), pid=7204, tid=7584
+#  Error: ShouldNotReachHere()
+#
+# JRE version: 6.0_22-b04
+# Java VM: Java HotSpot(TM) Client VM (17.1-b03 mixed mode windows-x86 )
+# If you would like to submit a bug report, please visit:
+#   http://java.sun.com/webapps/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x01799c00):  JavaThread "Unknown thread" [_thread_in_vm, id=7584, stack(0x00590000,0x005e0000)]
+
+Stack: [0x00590000,0x005e0000],  sp=0x005df880,  free space=13e005df890k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x1fd0f0]
+V  [jvm.dll+0xa4679]
+V  [jvm.dll+0x75ec1]
+V  [jvm.dll+0x77564]
+V  [jvm.dll+0x1cbc85]
+V  [jvm.dll+0x1cc3bd]
+V  [jvm.dll+0x1cc775]
+V  [jvm.dll+0x1cc7bb]
+V  [jvm.dll+0x1cc8e2]
+V  [jvm.dll+0x1cc95a]
+V  [jvm.dll+0x1cce0d]
+V  [jvm.dll+0x1cd222]
+V  [jvm.dll+0x1ecf03]
+V  [jvm.dll+0x1ed2dc]
+V  [jvm.dll+0xdb681]
+V  [jvm.dll+0x1e6668]
+V  [jvm.dll+0x1065b0]
+C  [javaw.exe+0x1657]
+C  [javaw.exe+0x1e2c]
+C  [javaw.exe+0x8614]
+C  [kernel32.dll+0x51174]
+C  [ntdll.dll+0x5b3f5]
+C  [ntdll.dll+0x5b3c8]
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x01799c00 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=7584, stack(0x00590000,0x005e0000)]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Dynamic libraries:
+0x00400000 - 0x00424000 	C:\Program Files\Java\jre6\bin\javaw.exe
+0x77b70000 - 0x77cac000 	C:\windows\SYSTEM32\ntdll.dll
+0x77a90000 - 0x77b64000 	C:\windows\system32\kernel32.dll
+0x75f00000 - 0x75f4a000 	C:\windows\system32\KERNELBASE.dll
+0x77d00000 - 0x77da0000 	C:\windows\system32\ADVAPI32.dll
+0x76680000 - 0x7672c000 	C:\windows\system32\msvcrt.dll
+0x75fb0000 - 0x75fc9000 	C:\windows\SYSTEM32\sechost.dll
+0x76120000 - 0x761c1000 	C:\windows\system32\RPCRT4.dll
+0x76390000 - 0x76459000 	C:\windows\system32\USER32.dll
+0x76010000 - 0x7605e000 	C:\windows\system32\GDI32.dll
+0x77cf0000 - 0x77cfa000 	C:\windows\system32\LPK.dll
+0x76080000 - 0x7611d000 	C:\windows\system32\USP10.dll
+0x75bf0000 - 0x75c3b000 	C:\windows\system32\apphelp.dll
+0x73ee0000 - 0x73f6c000 	C:\windows\AppPatch\AcLayers.DLL
+0x75bd0000 - 0x75bea000 	C:\windows\system32\SspiCli.dll
+0x76e40000 - 0x77a89000 	C:\windows\system32\SHELL32.dll
+0x76730000 - 0x76787000 	C:\windows\system32\SHLWAPI.dll
+0x76520000 - 0x7667c000 	C:\windows\system32\ole32.dll
+0x76300000 - 0x7638f000 	C:\windows\system32\OLEAUT32.dll
+0x75320000 - 0x75337000 	C:\windows\system32\USERENV.dll
+0x75cc0000 - 0x75ccb000 	C:\windows\system32\profapi.dll
+0x6ecf0000 - 0x6ed41000 	C:\windows\system32\WINSPOOL.DRV
+0x712c0000 - 0x712d2000 	C:\windows\system32\MPR.dll
+0x76060000 - 0x7607f000 	C:\windows\system32\IMM32.DLL
+0x769d0000 - 0x76a9c000 	C:\windows\system32\MSCTF.dll
+0x6d840000 - 0x6d85a000 	c:\progra~1\kasper~1\kasper~1\mzvkbd3.dll
+0x6d4b0000 - 0x6d4b8000 	c:\progra~1\kasper~1\kasper~1\kloehk.dll
+0x7c340000 - 0x7c396000 	C:\Program Files\Java\jre6\bin\msvcr71.dll
+0x01820000 - 0x01ac7000 	C:\Program Files\Java\jre6\bin\client\jvm.dll
+0x744f0000 - 0x74522000 	C:\windows\system32\WINMM.dll
+0x6d7a0000 - 0x6d7ac000 	C:\Program Files\Java\jre6\bin\verify.dll
+0x6d320000 - 0x6d33f000 	C:\Program Files\Java\jre6\bin\java.dll
+0x6d280000 - 0x6d288000 	C:\Program Files\Java\jre6\bin\hpi.dll
+0x77ce0000 - 0x77ce5000 	C:\windows\system32\PSAPI.DLL
+0x6d7e0000 - 0x6d7ef000 	C:\Program Files\Java\jre6\bin\zip.dll
+
+VM Arguments:
+jvm_args: -Dfile.encoding=MS932 -Xbootclasspath:D:\Install\android-sdk-windows\platforms\android-4\android.jar;D:\Install\android-sdk-windows\add-ons\addon_google_apis_google_inc_4\libs\maps.jar 
+java_command: com.player.ConnectToServer
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+CLASSPATH=.;C:\Program Files\Java\jre6\lib\ext\QTJava.zip
+PATH=C:/Program Files/Java/jre6/bin/client;C:/Program Files/Java/jre6/bin;D:\Install\cygwin\bin;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Toshiba\Bluetooth Toshiba Stack\sys\;C:\Program Files\Common Files\Ulead Systems\MPEG;C:\Program Files\Common Files\Sony Shared\FeliCaLibrary;C:\Program Files\Common Files\Sony Shared\FeliCaNFCLibrary;C:\xampp\mysql\bin;C:\xampp\php;C:\Program Files\jEdit;D:\Install\android-sdk-windows\tools;C:\Program Files\QuickTime\QTSystem\;C:\Program Files\TortoiseSVN\bin;C:\Program Files\ImageConverter Plus;C:\Program Files\ImageConverter Plus\Microsoft.VC90.CRT;C:\Program Files\ImageConverter Plus\Microsoft.VC90.MFC;
+USERNAME=levannghia
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=x86 Family 6 Model 37 Stepping 2, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 7 Build 7600 
+
+CPU:total 4 (8 cores per cpu, 2 threads per core) family 6 model 37 stepping 2, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, ht
+
+Memory: 4k page, physical 3067468k(967692k free), swap 6133172k(3443864k free)
+
+vm_info: Java HotSpot(TM) Client VM (17.1-b03) for windows-x86 JRE (1.6.0_22-b04), built on Sep 15 2010 00:56:36 by "java_re" with MS VC++ 7.1 (VS2003)
+
+time: Sun Nov 07 05:11:54 2010
+elapsed time: 0 seconds
+
