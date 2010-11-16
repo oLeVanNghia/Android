@@ -1,0 +1,288 @@
+package com.player;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.google.android.maps.GeoPoint;
+import com.google.android.maps.MapView;
+import com.google.android.maps.Overlay;
+import com.google.android.maps.OverlayItem;
+
+import android.app.Activity;
+import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
+import android.net.MailTo;
+import android.os.Bundle;
+import android.os.Environment;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.SeekBar.OnSeekBarChangeListener;
+
+public class PlayerActivity extends Activity implements OnClickListener,
+		OnItemClickListener, OnSeekBarChangeListener{
+	private MediaPlayer media = null;
+	ImageButton play;
+	ImageButton prev;
+	ImageButton next;
+	ImageButton sync;
+	ImageView volume;
+	SeekBar volumebar;
+	
+	TextView commentview;
+	TextView songname;
+	EditText commendedit;
+	
+	ListView listview;
+	private ArrayList<String> filename = new ArrayList<String>();
+	private File[] musicfilelist;
+	private boolean isplay = false;
+	private boolean ismute = false;
+	private int currentMusic = 0;
+
+	public void onCreate(Bundle save) {
+		super.onCreate(save);
+		setContentView(R.layout.player);
+
+		listview = (ListView) findViewById(R.id.listview);
+		getMusicFile();
+
+		// add listener to list
+		listview.setAdapter((new ArrayAdapter<String>(this, R.layout.listmusic,
+				filename)));
+		listview.setOnItemClickListener(this);
+
+		// add listener to button
+		play = (ImageButton) findViewById(R.id.playbutton);
+		prev = (ImageButton) findViewById(R.id.prevbutton);
+		next = (ImageButton) findViewById(R.id.nextbutton);
+		sync = (ImageButton) findViewById(R.id.sync);
+		volume = (ImageView) findViewById(R.id.volume);
+		
+		play.setOnClickListener(this);
+		prev.setOnClickListener(this);
+		next.setOnClickListener(this);
+		sync.setOnClickListener(this);
+		volume.setOnClickListener(this);
+		
+		//seek bar and textview
+		volumebar = (SeekBar) findViewById(R.id.volumebar);
+		commentview = (TextView) findViewById(R.id.commentview);
+		songname = (TextView) findViewById(R.id.songname);
+	}
+	
+	//音楽ファイルを読み出す
+	public void getMusicFile() {
+		File root = Environment.getExternalStorageDirectory();
+		File[] subroot = root.listFiles();
+		for (File file : subroot) {
+			if (file.getName().equals("music")) {
+				musicfilelist = file.listFiles();
+				for (File file2 : musicfilelist) {
+					filename.add(file2.getName().toString());
+				}
+			}
+		}
+	}
+	//指名したファイルをプレーする
+	public void playSelectMusic(String path) {
+		if (path.equals("") || path == null) {
+
+		} 
+		else {
+			if(media != null){
+				media.stop();
+				media.release();
+				media = null;
+			}
+			media = new MediaPlayer();
+			try {
+				media.setDataSource(path);
+				media.prepare();
+				media.start();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	//play next music in the list
+	public void nextPlay(){
+		if (currentMusic < musicfilelist.length-1) {
+			currentMusic++;
+			this.playSelectMusic(musicfilelist[currentMusic]
+					.getAbsolutePath());
+			//listview.setItemChecked(currentMusic, true);
+		}
+	}
+	//play prev music in the list
+	public void prevPlay(){
+		if (currentMusic > 0) {
+			currentMusic--;
+			this.playSelectMusic(musicfilelist[currentMusic]
+					.getAbsolutePath());
+		}
+	}
+	/**
+	 * prepare infor to send to server
+	 * @return infor
+	 */
+	public String prepareInfor(){
+		
+		return "hong,11,female,111,223,ssd,fff,forever,12,13,no thing";
+		
+	}
+	
+	/**
+	 * view user in map
+	 * @param message:information about user and listening music
+	 * @param user
+	 */
+//	public void addToMap(String message, String user, double longitude,
+//			double latitude) {
+//		int factor = 1000000;
+//		MapView map = (MapView) findViewById(R.id.mapview);
+//		List<Overlay> overlay = map.getOverlays();
+//		Drawable drawable = this.getResources().getDrawable(R.drawable.marker);
+//		MapOverlay mapOverlay = new MapOverlay(drawable, map.getContext());
+//
+//		GeoPoint point = new GeoPoint(19240000,99120000);
+//		OverlayItem overItem = new OverlayItem(point, user, message);
+//		mapOverlay.addOverlay(overItem);
+//
+//		overlay.add(mapOverlay);
+//	}
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		if (v == play) {
+			if(media == null){
+				playSelectMusic(musicfilelist[currentMusic].getAbsolutePath());
+			}
+			if (isplay == false) {
+				// media start
+				media.start();
+				play.setImageResource(R.drawable.pause);
+				isplay = true;
+			} else {
+				isplay = false;
+				play.setImageResource(R.drawable.play);
+				media.pause();
+			}
+			
+		}
+		if (v == next) {
+			nextPlay();
+		}
+		if (v == prev) {
+			prevPlay();
+		}
+		if(v == sync){
+			
+			//String infor = this.prepareInfor();
+			String servername ="10.0.2.2";
+			int port = 6543;
+			//connect to server
+			Client connect = new Client(port, servername, "get");
+			connect.setData("forever");
+			Thread thread = new Thread(connect);
+			thread.start();
+			while(thread.isAlive());
+			
+			ArrayList<String[]> results = connect.getInfors();
+			
+			String[] re = results.get(0);
+			String message="";
+			for (String string : re) {
+				message += string+",";
+			}
+			commentview.setText(message);
+			//add to map
+			for (String[] strings : results) {
+				String user = strings[0];
+				double longitude = Double.valueOf(strings[9]) ;
+				double latitude = Double.valueOf(strings[10]);
+				String messag = strings[11];
+				
+				songname.setText(strings[9]+" "+strings[10]);
+				
+			}
+		}
+		if(v == volume){
+			if(!ismute){
+				volume.setImageResource(R.drawable.volumemute);
+				ismute = true;
+				//set volume in here
+			}
+			else{
+				volume.setImageResource(R.drawable.volume);
+				ismute = false;
+				//set volume in here
+			}
+			
+		}
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int position,
+			long arg3) {
+		// TODO Auto-generated method stub
+		playSelectMusic(musicfilelist[position].getAbsolutePath());
+		currentMusic = position;
+		play.setImageResource(R.drawable.pause);
+	}
+	
+	@Override
+	public void onDestroy(){
+		super.onDestroy();
+		if(media!= null){
+			//if(media.isPlaying())
+			//media.stop();
+			media.release();
+			media = null;
+		}
+	}
+	
+	@Override
+	public void onStop(){
+		super.onStop();
+		if(media!= null){
+		//	nextPlay();
+		}
+	}
+	//seek bar on change listener
+	@Override
+	public void onProgressChanged(SeekBar seekBar, int progress,
+			boolean fromUser) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStartTrackingTouch(SeekBar seekBar) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStopTrackingTouch(SeekBar seekBar) {
+		// TODO Auto-generated method stub
+		
+	}
+}

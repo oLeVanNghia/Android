@@ -1,0 +1,54 @@
+package com.player;
+
+import java.util.List;
+
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+
+import com.google.android.maps.GeoPoint;
+import com.google.android.maps.MapActivity;
+import com.google.android.maps.MapView;
+import com.google.android.maps.Overlay;
+import com.google.android.maps.OverlayItem;
+
+public class MapAc extends MapActivity{
+	MapView map;
+	public void onCreate(Bundle save){
+		super.onCreate(save);
+		setContentView(R.layout.map);
+		
+		map = (MapView) findViewById(R.id.mapview);
+		map.setBuiltInZoomControls(true);
+		
+		List<Overlay> overlay = map.getOverlays();
+		Drawable drawable = this.getResources().getDrawable(R.drawable.marker);
+		MapOverlay mapOverlay = new MapOverlay(drawable,map.getContext());
+		
+		GeoPoint point =new GeoPoint(19240000,-99120000);
+		OverlayItem overItem = new OverlayItem(point, "Marker","this is first demo");
+		mapOverlay.addOverlay(overItem);
+		
+		overlay.add(mapOverlay);
+		
+		//GetLocation location = new GetLocation();
+		//maker(location.getLongitude(), location.getLatitude(), location.getAddress());
+		
+	}
+	public void maker(int longi, int lati,String message){
+		
+		List<Overlay> overlay = map.getOverlays();
+		Drawable drawable = this.getResources().getDrawable(R.drawable.marker);
+		MapOverlay mapOverlay = new MapOverlay(drawable,map.getContext());
+		
+		GeoPoint point =new GeoPoint(longi,lati);
+		OverlayItem overItem = new OverlayItem(point, "Marker",message);
+		mapOverlay.addOverlay(overItem);
+		
+		overlay.add(mapOverlay);
+	}
+	@Override
+	protected boolean isRouteDisplayed() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+}

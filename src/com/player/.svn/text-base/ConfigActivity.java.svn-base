@@ -1,0 +1,110 @@
+package com.player;
+
+import java.util.ArrayList;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.Spinner;
+
+public class ConfigActivity extends Activity implements OnClickListener{
+	Spinner property;
+	EditText name;
+	RadioButton male;
+	RadioButton female;
+	EditText age;
+	EditText andress;
+	EditText email;
+	EditText twitter;
+	EditText facebook;
+	
+	ImageButton savep;
+	ImageButton newp;
+	ImageButton delete;
+	ImageButton edit;
+	
+	PropertyFile propertyfile = new PropertyFile();
+	
+	public void onCreate(Bundle save){
+		super.onCreate(save);
+		setContentView(R.layout.property);
+		
+		property = (Spinner) findViewById(R.id.property);
+		
+		//ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.spinner_item,propertyfile.getPropertyName());
+		///property.setAdapter(adapter);
+		reloadPropertySpinner();
+		
+		name = (EditText) findViewById(R.id.name);
+		male =(RadioButton) findViewById(R.id.check_male);
+		male.setChecked(true);
+		female = (RadioButton) findViewById(R.id.check_female);
+		age = (EditText) findViewById(R.id.age);
+		andress = (EditText) findViewById(R.id.andress);
+		email = (EditText) findViewById(R.id.email);
+		twitter = (EditText) findViewById(R.id.twitter);
+		facebook = (EditText) findViewById(R.id.facebook);
+		
+		savep = (ImageButton) findViewById(R.id.save);
+		newp = (ImageButton) findViewById(R.id.newp);
+		delete = (ImageButton) findViewById(R.id.delete);
+		edit = (ImageButton) findViewById(R.id.edit);
+		
+		//add listener
+		savep.setOnClickListener(this);
+		newp.setOnClickListener(this);
+		delete.setOnClickListener(this);
+		edit.setOnClickListener(this);
+		
+		male.setOnClickListener(this);
+		female.setOnClickListener(this);
+		
+		
+	}
+	public void reloadPropertySpinner(){
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.spinner_item,propertyfile.getPropertyName());
+		property.setAdapter(adapter);
+	}
+	public void enableEdit(){
+		
+	}
+	public String getGender(){
+		if(male.isChecked())
+			return "male";
+		return "female";
+	}
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		if(v == savep){
+			String inname = name.getText().toString();
+			String ingender = this.getGender();
+			String inage = age.getText().toString();
+			String inandress = andress.getText().toString();
+			String inemail = email.getText().toString();
+			String intwitter = twitter.getText().toString();
+			String infacebook = facebook.getText().toString();
+			
+			UserInfo user = new UserInfo(inname, inage, ingender, inandress, inemail, intwitter, infacebook);
+			propertyfile.addUser(user);
+			propertyfile.save();
+			reloadPropertySpinner();
+		}
+		if(v == newp){
+			
+		}
+		if(v == delete){
+			
+		}
+		if(v == edit){
+			
+		}
+		
+	}
+	
+}

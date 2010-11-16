@@ -1,0 +1,115 @@
+Start at Friday, November 05, 2010    13:17:35
+=========================================
+
+Registration Info : 
+
+Windows Version:
+Home Edition  (Build 7600)
+
+Module Info:
+Company: fCoder Group, Inc.
+Product Name: ImageConverter Plus
+Product Version: 8.0.181.100720
+
+CPU Info:
+Mode: x32 bit
+Vendor: GenuineIntel
+Vendor ID: Intel Corporation
+Extended Processor Name: Pentium® II (0.25 µm)
+Procesor Clock Frequecy: 2127
+Logical processors per physical: 16
+Stepping code: 2
+MMX support: yes
+MMX+ support: no
+SSE support: yes
+SSE2 support: yes
+3DNow suppor: no
+3DNow+ suppor: no
+AI64 support: no
+Hyperthreading support: no
+L1 cache size: -1
+L2 cache size: -1
+L3 cache size: -1
+
+Monitor info:
+Color depth: 32 Bits per pixel.
+Pixel Width: 1280
+Pixel Height: 800
+Refresh frequency: 60 Hz
+
+Internet Explorer Version: 6.1
+Build Number: 7600
+
+Printers list: 
+Send To OneNote 2007
+Microsoft XPS Document Writer
+Fax
+
+Default printer: 
+Send To OneNote 2007
+
+
+Profile settings:
+
+Operations:
+
+Format properties:
+    Extension: png
+    bits per pixel : 24
+    compression level : 5
+    quantization levels : 8
+    dithering : yes
+    use source alpha channel for indexed modes : yes
+
+Save properties:
+    Destination path: {Source path}
+    convert with subfolders : yes
+    restore subfolder structure in target folder : yes
+    open target folder after conversion : yes
+    create log file in target folder : yes
+
+Target file name properties:
+    Name template: {Title}.{Type}
+    what to do, if file exists : auto_rename
+    delete source images : no
+
+Processing files...
+
+=====================================================================
+
+File 1 of 2
+
+RAM free    :    1009.5 of    2048.0 Mb
+Virtual free:    1803.5 of    2047.9 Mb
+Target free disk space :   93734.7 of  170366.0 Mb
+Temp free disk space   :   77538.2 of  123492.0 Mb
+
+Src info : D:\Programming\Android\Player\res\drawable-hdpi\next.jpg
+jpg, 48x48px, 24bpp, 1 page(s), 96.000000x96.000000 dpi, 1631 bytes
+Load all pages :  ok
+
+Save :  ok
+
+Dest info : D:\Programming\Android\Player\res\drawable-hdpi\next.png
+png, 48x48px, 24bpp, 1 page(s), 96.000000x96.000000 dpi, 3906 bytes
+
+=====================================================================
+
+File 2 of 2
+
+RAM free    :    1009.0 of    2048.0 Mb
+Virtual free:    1803.5 of    2047.9 Mb
+Target free disk space :   93734.7 of  170366.0 Mb
+Temp free disk space   :   77538.2 of  123492.0 Mb
+
+Src info : D:\Programming\Android\Player\res\drawable-hdpi\prev.jpg
+jpg, 48x48px, 24bpp, 1 page(s), 96.000000x96.000000 dpi, 1630 bytes
+Load all pages :  ok
+
+Save :  ok
+
+Dest info : D:\Programming\Android\Player\res\drawable-hdpi\prev.png
+png, 48x48px, 24bpp, 1 page(s), 96.000000x96.000000 dpi, 3934 bytes
+
+Complete at Friday, November 05, 2010    13:17:35
+=========================================

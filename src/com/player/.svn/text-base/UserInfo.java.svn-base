@@ -1,0 +1,39 @@
+package com.player;
+
+public class UserInfo {
+	private String name;
+	private String age;
+	private String gender;
+	private String andress;
+	private String email;
+	private String twitter;
+	private String facebook;
+	
+	public UserInfo(String[] infor) {
+		// TODO Auto-generated constructor stub
+		this.name = infor[0];
+		this.age = infor[1];
+		this.gender = infor[2];
+		this.andress = infor[3];
+		this.email = infor[4];
+		this.twitter = infor[5];
+		this.facebook = infor[6];
+	}
+	public UserInfo(String name, String age, String gender, String andress,
+			String email, String twitter, String facebook) {
+		// TODO Auto-generated constructor stub
+		this.name = name;
+		this.age = age;
+		this.gender = gender;
+		this.andress = andress;
+		this.email = email;
+		this.twitter = twitter;
+		this.facebook = facebook;
+	}
+	public String getName(){
+		return name;
+	}
+	public String toString(){
+		return name+","+age+","+gender+","+andress+","+email+","+twitter+","+facebook;
+	}
+}
